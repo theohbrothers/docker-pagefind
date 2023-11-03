@@ -1,0 +1,9 @@
+{
+  "pagefind": {
+    "versions": [
+      "1.0.3"
+    ],
+    "versionsChangeScope": "minor",
+    "versionsNewScript": "Invoke-WebRequest https://api.github.com/repos/CloudCannon/pagefind/git/refs/tags | ConvertFrom-Json | % { $_.ref -replace 'refs/tags/v', '' } | ? { $_ -match '^\\d+\\.\\d+\\.\\d+$' } | Sort-Object { [version]$_ } -Descending | ? { [version]$_ -ge [version]'1.0' }"
+  }
+}
