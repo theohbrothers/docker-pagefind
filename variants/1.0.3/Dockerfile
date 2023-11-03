@@ -14,4 +14,6 @@ RUN set -eux; \
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 
+WORKDIR /
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
+CMD [ "pagefind_extended", "--site", "/public" ]

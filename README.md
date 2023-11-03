@@ -12,6 +12,14 @@ Dockerized [pagefind](https://github.com/CloudCannon/pagefind).
 |:-------:|:---------:|
 | `:1.0.3`, `:latest` | [View](variants/1.0.3) |
 
+## Usage
+
+Mount the public directory into the container at /public.
+
+```sh
+docker run --rm -it -v /path/to/public:/public docker-pagefind:1.0.3 --site public
+```
+
 ## Development
 
 Requires Windows `powershell` or [`pwsh`](https://github.com/PowerShell/PowerShell).

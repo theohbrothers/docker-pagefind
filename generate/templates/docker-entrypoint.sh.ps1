@@ -3,7 +3,7 @@
 set -eu
 
 if [ $# -gt 0 ] && [ "${1#-}" != "$1" ]; then
-    set -- pagefind "$@"
+    set -- pagefind_extended "$@"
 fi
 
 exec "$@"

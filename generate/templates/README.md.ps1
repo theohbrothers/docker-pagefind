@@ -26,6 +26,14 @@ $(
     }
 }) -join ''
 )
+## Usage
+
+Mount the public directory into the container at `/public`.
+
+``````sh
+docker run --rm -it -v /path/to/public:/public docker-pagefind:$( $VARIANTS | % { $_['tag'] } | Select-Object -First 1 ) --site public
+``````
+
 
 "@
 
