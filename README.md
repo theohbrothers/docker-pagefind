@@ -14,10 +14,10 @@ Dockerized [pagefind](https://github.com/CloudCannon/pagefind).
 
 ## Usage
 
-Mount the public directory into the container at /public.
+Mount the public directory into the container at `/public`.
 
 ```sh
-docker run --rm -it -v /path/to/public:/public docker-pagefind:1.0.3 --site public
+docker run --rm -it -v $(pwd)/public:/public theohbrothers/docker-pagefind:1.0.3
 ```
 
 ## Development
