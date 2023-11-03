@@ -108,7 +108,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: variants/1.0.3
-        platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        platforms: linux/amd64
         push: false
         tags: |
           ${{ github.repository }}:${{ steps.prep-1-0-3.outputs.REF_VARIANT }}
@@ -122,7 +122,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: variants/1.0.3
-        platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        platforms: linux/amd64
         push: true
         tags: |
           ${{ github.repository }}:${{ steps.prep-1-0-3.outputs.REF_VARIANT }}
@@ -135,7 +135,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: variants/1.0.3
-        platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        platforms: linux/amd64
         push: true
         tags: |
           ${{ github.repository }}:${{ steps.prep-1-0-3.outputs.VARIANT }}
