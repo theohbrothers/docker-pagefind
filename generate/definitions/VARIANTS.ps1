@@ -19,7 +19,7 @@ $VARIANTS = @(
                 # Metadata object
                 _metadata = @{
                     package_version = $variant['package_version']
-                    platforms = 'linux/amd64'
+                    platforms = 'linux/amd64,linux/arm/v7,linux/arm64,linux/s390x'
                     components = $subVariant['components']
                     job_group_key = $variant['package_version']
                 }
