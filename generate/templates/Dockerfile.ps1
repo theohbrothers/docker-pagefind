@@ -4,7 +4,7 @@ function Generate-DownloadBinary ($o) {
     if ($o['checksumsUrl']) {
         Set-Checksums "$( $o['binary'] )-$( $o['version'] )" $o['checksumsUrl']
     }else {
-        $release = Invoke-RestMethod "https://api.github.com/repos/$( $o['repository'] )/releases/tags/v1.0.3"
+        $release = Invoke-RestMethod "https://api.github.com/repos/$( $o['repository'] )/releases/tags/$( $o['version'] )"
         $releaseAssetsFiles = $release.assets | ? { $_.name -match [regex]::Escape($o['binary']) -and $_.name -notmatch '\.sha\d+$' }
         $files = [ordered]@{}
         foreach ($f in $releaseAssetsFiles ) {
