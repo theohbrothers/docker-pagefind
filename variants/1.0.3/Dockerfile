@@ -3,9 +3,17 @@ FROM alpine:3.17
 RUN set -eux; \
     PAGEFIND_EXTENDED_VERSION=v1.0.3; \
     case "$( uname -m )" in \
+        'x86') \
+            URL="https://github.com/CloudCannon/pagefind/releases/download/v1.0.3/pagefind_extended-v1.0.3-x86_64-unknown-linux-musl.tar.gz"; \
+            SHA256=aec60f1db9fd693986b2c3d6253f98e6710e5046a371fc1c7e3ecc5fc982a95d; \
+            ;; \
         'x86_64') \
             URL="https://github.com/CloudCannon/pagefind/releases/download/v1.0.3/pagefind_extended-v1.0.3-x86_64-unknown-linux-musl.tar.gz"; \
             SHA256=aec60f1db9fd693986b2c3d6253f98e6710e5046a371fc1c7e3ecc5fc982a95d; \
+            ;; \
+        'aarch64') \
+            URL="https://github.com/CloudCannon/pagefind/releases/download/v1.0.3/pagefind_extended-v1.0.3-aarch64-unknown-linux-musl.tar.gz"; \
+            SHA256=575885fb7086a31b9322b7bba0b0baf57bb2586b1fcc7661a88a73ffe17c8134; \
             ;; \
         *) \
             echo "Architecture not supported"; \
