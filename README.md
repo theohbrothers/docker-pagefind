@@ -11,6 +11,17 @@ Dockerized [pagefind](https://github.com/CloudCannon/pagefind).
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
 | `:1.0.3`, `:latest` | [View](variants/1.0.3) |
+| `:0.12.0`, `:latest` | [View](variants/0.12.0) |
+| `:0.11.0`, `:latest` | [View](variants/0.11.0) |
+| `:0.10.7`, `:latest` | [View](variants/0.10.7) |
+| `:0.9.3`, `:latest` | [View](variants/0.9.3) |
+| `:0.8.1`, `:latest` | [View](variants/0.8.1) |
+| `:0.7.1`, `:latest` | [View](variants/0.7.1) |
+| `:0.6.1`, `:latest` | [View](variants/0.6.1) |
+| `:0.5.3`, `:latest` | [View](variants/0.5.3) |
+| `:0.4.1`, `:latest` | [View](variants/0.4.1) |
+| `:0.3.2`, `:latest` | [View](variants/0.3.2) |
+| `:0.2.0`, `:latest` | [View](variants/0.2.0) |
 
 ## Usage
 

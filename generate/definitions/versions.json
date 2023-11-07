@@ -1,9 +1,20 @@
 {
   "pagefind": {
     "versions": [
-      "1.0.3"
+      "1.0.3",
+      "0.12.0",
+      "0.11.0",
+      "0.10.7",
+      "0.9.3",
+      "0.8.1",
+      "0.7.1",
+      "0.6.1",
+      "0.5.3",
+      "0.4.1",
+      "0.3.2",
+      "0.2.0"
     ],
     "versionsChangeScope": "minor",
-    "versionsNewScript": "Invoke-WebRequest https://api.github.com/repos/CloudCannon/pagefind/git/refs/tags | ConvertFrom-Json | % { $_.ref -replace 'refs/tags/v', '' } | ? { $_ -match '^\\d+\\.\\d+\\.\\d+$' } | Sort-Object { [version]$_ } -Descending | ? { [version]$_ -ge [version]'1.0' }"
+    "versionsNewScript": "Invoke-WebRequest https://api.github.com/repos/CloudCannon/pagefind/git/refs/tags | ConvertFrom-Json | % { $_.ref -replace 'refs/tags/v', '' } | ? { $_ -match '^\\d+\\.\\d+\\.\\d+$' } | Sort-Object { [version]$_ } -Descending"
   }
 }
