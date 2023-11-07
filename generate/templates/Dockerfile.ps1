@@ -168,8 +168,6 @@ FROM alpine:3.17
 
 "@
 
-
-$RESTIC_VERSION = 'v0.15.1'
 Generate-DownloadBinary @{
     binary = 'pagefind_extended'
     version = "v$( $VARIANT['_metadata']['package_version'] )"
