@@ -1,12 +1,14 @@
+# Version 0.1.0
 function Generate-DownloadBinary ($o) {
     Set-StrictMode -Version Latest
 
+    $checksumsKey = "$( $o['binary'] )-$( $o['version'] )"
+    $files = [ordered]@{}
     if ($o['checksumsUrl']) {
-        Set-Checksums "$( $o['binary'] )-$( $o['version'] )" $o['checksumsUrl']
+        Set-Checksums $checksumsKey  $o['checksumsUrl']
     }else {
         $release = Invoke-RestMethod "https://api.github.com/repos/$( $o['repository'] )/releases/tags/$( $o['version'] )"
         $releaseAssetsFiles = $release.assets | ? { $_.name -match [regex]::Escape($o['binary']) -and $_.name -notmatch '\.sha\d+$' }
-        $files = [ordered]@{}
         foreach ($f in $releaseAssetsFiles ) {
             $sha = & {
                 $shaF = $release.assets | ? { $_.name -eq "$( $f.name ).sha256" -or $_ -eq "$( $f.name ).sha512" }
@@ -71,14 +73,21 @@ RUN set -eux; \
             }
         }
 
-        $file = $files.Keys | ? { $_ -match $regex } | Select-Object -First 1
-        if ($file) {
-            $url = if ($o['checksumsUrl']) {
-                Split-Path $o['checksumsUrl'] -Parent
+        $file = $sha = $url = ''
+        if ($o['checksumsUrl']) {
+            $file = Get-ChecksumsFile $checksumsKey $regex
+            $sha = Get-ChecksumsSha $checksumsKey $regex
+            $url = Split-Path $o['checksumsUrl'] -Parent
+        } else {
+            $file = $files.Keys | ? { $_ -match $regex } | Select-Object -First 1
+            if ($file) {
+                $url = "https://github.com/$( $o['repository'] )/releases/download/$( $o['version'] )"
+                $sha = $files[$file]
             }else {
-                "https://github.com/$( $o['repository'] )/releases/download/$( $o['version'] )"
+                throw "No file matched regex: $regex"
             }
-            $sha = $files[$file]
+        }
+        if ($file -and $sha) {
 @"
         '$hardware') \
             URL="$url/$file"; \
