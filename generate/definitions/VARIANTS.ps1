@@ -28,7 +28,7 @@ $VARIANTS = @(
                     $variant['package_version']
                     $subVariant['components'] | ? { $_ }
                 ) -join '-'
-                tag_as_latest = if ($variant['base_image_tag'] -eq $local:BASE_IMAGE_TAG_LATEST_STABLE -and $subVariant['components'].Count -eq 0) { $true } else { $false }
+                tag_as_latest = if ($variant['package_version'] -eq $local:VARIANTS_MATRIX[0]['package_version'] -and $subVariant['components'].Count -eq 0) { $true } else { $false }
             }
         }
     }
