@@ -1,6 +1,6 @@
 # docker-pagefind
 
-[![github-actions](https://github.com/theohbrothers/docker-pagefind/workflows/ci-master-pr/badge.svg)](https://github.com/theohbrothers/docker-pagefind/actions)
+[![github-actions](https://github.com/theohbrothers/docker-pagefind/actions/workflows/ci-master-pr.yml/badge.svg?branch=master)](https://github.com/theohbrothers/docker-pagefind/actions/workflows/ci-master-pr.yml)
 [![github-release](https://img.shields.io/github/v/release/theohbrothers/docker-pagefind?style=flat-square)](https://github.com/theohbrothers/docker-pagefind/releases/)
 [![docker-image-size](https://img.shields.io/docker/image-size/theohbrothers/docker-pagefind/latest)](https://hub.docker.com/r/theohbrothers/docker-pagefind)
 
