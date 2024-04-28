@@ -10,14 +10,15 @@ Dockerized [pagefind](https://github.com/CloudCannon/pagefind).
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
-| `:1.0.4`, `:latest` | [View](variants/1.0.4) |
+| `:1.1.0`, `:latest` | [View](variants/1.1.0) |
+| `:1.0.4` | [View](variants/1.0.4) |
 
 ## Usage
 
 Mount the public directory into the container at `/public`.
 
 ```sh
-docker run --rm -it -v $(pwd)/public:/public theohbrothers/docker-pagefind:1.0.4
+docker run --rm -it -v $(pwd)/public:/public theohbrothers/docker-pagefind:1.1.0
 ```
 
 ## Development
