@@ -12,7 +12,7 @@ Dockerized [pagefind](https://github.com/CloudCannon/pagefind).
 |:-------:|:---------:|
 | `:1.3.0`, `:latest` | [View](variants/1.3.0) |
 | `:1.2.0` | [View](variants/1.2.0) |
-| `:1.1.0` | [View](variants/1.1.0) |
+| `:1.1.1` | [View](variants/1.1.1) |
 | `:1.0.4` | [View](variants/1.0.4) |
 
 ## Usage
