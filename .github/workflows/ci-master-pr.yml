@@ -272,7 +272,7 @@ jobs:
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  build-1-1-0:
+  build-1-1-1:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -303,9 +303,9 @@ jobs:
       uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-1.1.0-${{ github.sha }}
+        key: ${{ runner.os }}-buildx-1.1.1-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-1.1.0-
+          ${{ runner.os }}-buildx-1.1.1-
           ${{ runner.os }}-buildx-
 
     - name: Login to Docker Hub registry
@@ -318,7 +318,7 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
-      id: prep-1-1-0
+      id: prep-1-1-1
       run: |
         set -e
 
@@ -331,7 +331,7 @@ jobs:
         # Generate docker image tags
         # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
         # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
-        VARIANT="1.1.0"
+        VARIANT="1.1.1"
         REF_VARIANT="${REF}-${VARIANT}"
         REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
 
@@ -341,45 +341,45 @@ jobs:
         echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
         echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
 
-    - name: 1.1.0 - Build (PRs)
+    - name: 1.1.1 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
       uses: docker/build-push-action@v5
       with:
-        context: variants/1.1.0
+        context: variants/1.1.1
         platforms: linux/386,linux/amd64,linux/arm64
         push: false
         tags: |
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 1.1.0 - Build and push (master)
+    - name: 1.1.1 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v5
       with:
-        context: variants/1.1.0
+        context: variants/1.1.1
         platforms: linux/386,linux/amd64,linux/arm64
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 1.1.0 - Build and push (release)
+    - name: 1.1.1 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v5
       with:
-        context: variants/1.1.0
+        context: variants/1.1.1
         platforms: linux/386,linux/amd64,linux/arm64
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-1-1-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-1-1-1.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
@@ -514,7 +514,7 @@ jobs:
     needs:
       - build-1-3-0
       - build-1-2-0
-      - build-1-1-0
+      - build-1-1-1
       - build-1-0-4
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
@@ -531,7 +531,7 @@ jobs:
     needs:
       - build-1-3-0
       - build-1-2-0
-      - build-1-1-0
+      - build-1-1-1
       - build-1-0-4
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
@@ -550,7 +550,7 @@ jobs:
     needs:
       - build-1-3-0
       - build-1-2-0
-      - build-1-1-0
+      - build-1-1-1
       - build-1-0-4
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
