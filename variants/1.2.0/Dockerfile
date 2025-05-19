@@ -23,12 +23,15 @@ RUN set -eux; \
     FILE=pagefind_extended.tar.gz; \
     wget -q "$URL" -O "$FILE"; \
     echo "$SHA256  $FILE" | sha256sum -c -; \
-    tar -xvf "$FILE" --no-same-owner --no-same-permissions -- pagefind_extended; \
-    rm -f "$FILE"; \
+    mkdir -p extract; \
+    tar -C extract -xvf "$FILE" --no-same-owner --no-same-permissions -- pagefind_extended; \
     mkdir -pv /usr/local/bin; \
-    mv -v pagefind_extended /usr/local/bin/pagefind_extended; \
+    BIN=$( find extract -type f -name "pagefind_extended" | head -n1 ); \
+    mv -v "$BIN" /usr/local/bin/pagefind_extended; \
     chmod +x /usr/local/bin/pagefind_extended; \
     pagefind_extended --version; \
+    rm -rf extract; \
+    rm -f "$FILE"; \
     :
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
