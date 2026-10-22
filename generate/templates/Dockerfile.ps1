@@ -11,7 +11,7 @@ Generate-DownloadBinary @{
     archivefiles = @(
         'pagefind_extended'
     )
-    architectures = $VARIANT['_metadata']['platforms']
+    # platforms = $VARIANT['_metadata']['platforms']
     testCommand = 'pagefind_extended --version'
 }
 
