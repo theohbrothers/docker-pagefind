@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.24
 # Install pagefind_extended
 RUN set -eux; \
     PAGEFIND_EXTENDED_VERSION=v1.0.4; \
